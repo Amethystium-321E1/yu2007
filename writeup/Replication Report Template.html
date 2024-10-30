@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Yawen Dong, Junyi Hui &amp; Pengjia Cui {yad014,hjunyi,pcui}@ucsd.edu">
+<meta name="author" content="Allison Park, Yawen Dong, Junyi Hui &amp; Pengjia Cui">
 
 <title>Replication of “Rapid Word Learning Under Uncertainty via Cross-Situational Statistics” (2007 Psychological Science)</title>
 <style>
@@ -60,7 +60,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#confirmatory-analysis" id="toc-confirmatory-analysis" class="nav-link" data-scroll-target="#confirmatory-analysis">Confirmatory analysis</a></li>
+  <li><a href="#confirmatory-analysis" id="toc-confirmatory-analysis" class="nav-link" data-scroll-target="#confirmatory-analysis">Confirmatory Analysis</a></li>
   <li><a href="#exploratory-analyses" id="toc-exploratory-analyses" class="nav-link" data-scroll-target="#exploratory-analyses">Exploratory analyses</a></li>
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Yawen Dong, Junyi Hui &amp; Pengjia Cui {yad014,hjunyi,pcui}<span class="citation" data-cites="ucsd.edu">@ucsd.edu</span> </p>
+             <p>Allison Park, Yawen Dong, Junyi Hui &amp; Pengjia Cui </p>
           </div>
   </div>
     
@@ -107,7 +107,6 @@ ul.task-list li input[type="checkbox"] {
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>I chose to replicate Yu &amp; Smith’s (2007) study on cross-situational word learning because it offers a unique perspective on how humans process ambiguous information in learning environments—a key concept in both cognitive science and AI. I am particularly interested in how the principles of statistical learning observed in human behavior can inform machine learning models. This study demonstrates how learners can rapidly acquire word-referent pairs without direct feedback, using statistical correlations across multiple learning trials. Replicating this experiment will allow me to explore these learning strategies further and assess their reliability in real-world-like settings where ambiguity is inherent.</p>
 <p>The stimuli will consist of 54 unfamiliar objects paired with 54 pseudowords, divided into sets of 18 word-referent pairs. Pseudowords will be generated to sound like plausible English words but lack meaning, while the objects will be unfamiliar to prevent prior knowledge from influencing learning.</p>
 <p>Participants will be presented with multiple trials in three conditions: 2 words with 2 objects, 3 words with 3 objects, and 4 words with 4 objects. In each trial, words and referents are shown simultaneously without clues linking them, requiring participants to learn the correct word-referent pairings by tracking co-occurrences across trials. After the learning phase, participants will take a forced-choice test to identify the correct referents for each word.</p>
 <p>The main challenge will be ensuring the ambiguity of each trial while maintaining statistical information across trials, along with controlling the timing and stimuli presentation to match the original study.</p>
@@ -118,39 +117,38 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="power-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="power-analysis">Power Analysis</h3>
-<p>Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.</p>
 </section>
 <section id="planned-sample" class="level3">
 <h3 class="anchored" data-anchor-id="planned-sample">Planned Sample</h3>
-<p>Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.</p>
+<p>The planned sample size is set at 38 participants based on power analysis, with a termination rule allowing for additional recruitment if data exclusions reduce the usable sample below 30. Participants will be recruited from a university student pool. The sampling frame is limited to native English-speaking adults aged 18 to 35, and participants will receive monetary compensation (by Yu &amp; Simth 2007, 7$ each person). No preselection rules are applied beyond these demographic and language criteria.</p>
 </section>
 <section id="materials" class="level3">
 <h3 class="anchored" data-anchor-id="materials">Materials</h3>
-<p>All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely. Or, quote directly and just point out exceptions to what was described in the original article.</p>
+<p>All materials will follow the original article’s description precisely. As stated in the article, “the stimuli were slides containing pictures of uncommon objects (We’ll use JsPsysch for that) paired with auditorily presented pseudowords.(18 images and 18 wav files on <a href="https://drive.google.com/drive/folders/1qu7-ZgbhbMWOzZQxvXnVMCdSLIasc-o8">Google Drive</a>)” The pseudowords are computer-generated to maintain phonotactic probability in English. The word-referent pairs, experimental setup, and conditions (2x2, 3x3, and 4x4) will be recreated according to the original specifications, with each pair presented six times across trials.</p>
 </section>
 <section id="procedure" class="level3">
 <h3 class="anchored" data-anchor-id="procedure">Procedure</h3>
-<p>Can quote directly from original article - just put the text in quotations and note that this was followed precisely. Or, quote directly and just point out exceptions to what was described in the original article.</p>
+<p>The procedure will follow Yu &amp; Smith (2007) with minimal modification: “Each trial began with the simultaneous visual presentation of the referents on a computer monitor. The names were then presented auditorily over the computer’s speakers.” As in the original study, no additional cues will be provided to suggest word-object pairings within individual trials, and participants will complete a 4-alternative forced-choice test following each condition.</p>
 </section>
 <section id="analysis-plan" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h3>
-<p>Can also quote directly, though it is less often spelled out effectively for an analysis strategy section. The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.</p>
-<p><strong>Clarify key analysis of interest here</strong> You can also pre-specify additional analyses you plan to do.</p>
+<p>The analysis plan will replicate the original study’s strategy closely. Data cleaning rules include removing trials with response times exceeding three standard deviations from the participant’s mean or below 200 ms. Data exclusions will follow the criteria set forth in the “Exclusions” section of this protocol. We will calculate the mean accuracy for each participant in each condition and conduct a repeated-measures ANOVA to test for differences across the 2x2, 3x3, and 4x4 conditions.</p>
+<p>The primary analysis of interest is the repeated-measures ANOVA, testing whether accuracy varies significantly across conditions with different ambiguity levels. Additional exploratory analyses will examine potential learning patterns across trials.</p>
 </section>
 <section id="differences-from-original-study" class="level3">
 <h3 class="anchored" data-anchor-id="differences-from-original-study">Differences from Original Study</h3>
-<p>Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study. The goal, of course, is to minimize those differences, but differences will inevitably occur. Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.</p>
+<p>Our study aims to mirror the original as closely as possible. However, differences may arise from using a different sample frame (our university student pool) and potential minor procedural adjustments due to updated software. Based on the literature, these differences are not expected to substantially impact the effect.</p>
 </section>
 <section id="methods-addendum-post-data-collection" class="level3">
 <h3 class="anchored" data-anchor-id="methods-addendum-post-data-collection">Methods Addendum (Post Data Collection)</h3>
-<p>You can comment this section out prior to final report with data collection.</p>
+<p><em>(Comment this section out prior to final report with data collection)</em></p>
 <section id="actual-sample" class="level4">
 <h4 class="anchored" data-anchor-id="actual-sample">Actual Sample</h4>
-<p>Sample size, demographics, data exclusions based on rules spelled out in analysis plan</p>
+<p>Expected to be 38 participants.</p>
 </section>
 <section id="differences-from-pre-data-collection-methods-plan" class="level4">
 <h4 class="anchored" data-anchor-id="differences-from-pre-data-collection-methods-plan">Differences from pre-data collection methods plan</h4>
-<p>Any differences from what was described as the original plan, or “none”.</p>
+<p>None.</p>
 </section>
 </section>
 </section>
@@ -161,8 +159,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Data preparation following the analysis plan.</p>
 </section>
 <section id="confirmatory-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="confirmatory-analysis">Confirmatory analysis</h3>
-<p>The analyses as specified in the analysis plan.</p>
+<h3 class="anchored" data-anchor-id="confirmatory-analysis">Confirmatory Analysis</h3>
+<p>We will perform a <strong>repeated-measures ANOVA</strong> to assess differences in accuracy across the three conditions: 2x2, 3x3, and 4x4. This test will evaluate whether the degree of within-trial ambiguity significantly affects participants’ accuracy in learning word-referent pairings.</p>
+<p>The analysis steps are as follows: 1. <strong>Accuracy Calculation</strong>: For each participant, compute the mean accuracy in each condition. 2. <strong>ANOVA Assumptions Check</strong>: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction. 3. <strong>Main Analysis</strong>: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions. 4. <strong>Post-Hoc Comparisons (if needed)</strong>: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.</p>
+<p>This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized.</p>
 <p><em>Side-by-side graph with original graph is ideal here</em></p>
 </section>
 <section id="exploratory-analyses" class="level3">

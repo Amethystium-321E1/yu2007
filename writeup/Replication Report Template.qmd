@@ -1,6 +1,6 @@
 ---
 title: "Replication of \"Rapid Word Learning Under Uncertainty via Cross-Situational Statistics\" (2007 Psychological Science)"
-author: "Yawen Dong, Junyi Hui & Pengjia Cui {yad014,hjunyi,pcui}@ucsd.edu"
+author: "Allison Park, Yawen Dong, Junyi Hui & Pengjia Cui"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
@@ -11,8 +11,6 @@ format:
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
 ## Introduction
-
-I chose to replicate Yu & Smith’s (2007) study on cross-situational word learning because it offers a unique perspective on how humans process ambiguous information in learning environments—a key concept in both cognitive science and AI. I am particularly interested in how the principles of statistical learning observed in human behavior can inform machine learning models. This study demonstrates how learners can rapidly acquire word-referent pairs without direct feedback, using statistical correlations across multiple learning trials. Replicating this experiment will allow me to explore these learning strategies further and assess their reliability in real-world-like settings where ambiguity is inherent.
 
 The stimuli will consist of 54 unfamiliar objects paired with 54 pseudowords, divided into sets of 18 word-referent pairs. Pseudowords will be generated to sound like plausible English words but lack meaning, while the objects will be unfamiliar to prevent prior knowledge from influencing learning.
 
@@ -30,13 +28,13 @@ The original paper can be accessed via [DOI](https://doi.org/10.1111/j.1467-9280
 
 
 ### Planned Sample
-The planned sample size is set at 30 participants based on power analysis, with a termination rule allowing for additional recruitment if data exclusions reduce the usable sample below 30. Participants will be recruited from a university student pool. The sampling frame is limited to native English-speaking adults aged 18 to 35, and participants will receive either course credit or monetary compensation. No preselection rules are applied beyond these demographic and language criteria.
+The planned sample size is set at 38 participants based on power analysis, with a termination rule allowing for additional recruitment if data exclusions reduce the usable sample below 30. Participants will be recruited from a university student pool. The sampling frame is limited to native English-speaking adults aged 18 to 35, and participants will receive monetary compensation (by Yu & Simth 2007, 7$ each person). No preselection rules are applied beyond these demographic and language criteria. 
 
 ### Materials
-All materials will follow the original article’s description precisely. As stated in Yu and Smith (2007), “the stimuli were slides containing pictures of uncommon objects (e.g., canister, facial sauna, and rasp) paired with auditorily presented pseudowords.” The pseudowords are computer-generated to maintain phonotactic probability in English. The word-referent pairs, experimental setup, and conditions (2x2, 3x3, and 4x4) will be recreated according to the original specifications, with each pair presented six times across trials.
+All materials will follow the original article’s description precisely. As stated in the article, “the stimuli were slides containing pictures of uncommon objects (We'll use JsPsysch for that) paired with auditorily presented pseudowords.(18 images and 18 wav files on [Google Drive](https://drive.google.com/drive/folders/1qu7-ZgbhbMWOzZQxvXnVMCdSLIasc-o8))” The pseudowords are computer-generated to maintain phonotactic probability in English. The word-referent pairs, experimental setup, and conditions (2x2, 3x3, and 4x4) will be recreated according to the original specifications, with each pair presented six times across trials.
 
 ### Procedure
-The procedure will follow Yu and Smith (2007) with minimal modification: “Each trial began with the simultaneous visual presentation of the referents on a computer monitor. The names were then presented auditorily over the computer’s speakers.” As in the original study, no additional cues will be provided to suggest word-object pairings within individual trials, and participants will complete a 4-alternative forced-choice test following each condition.
+The procedure will follow Yu & Smith (2007) with minimal modification: “Each trial began with the simultaneous visual presentation of the referents on a computer monitor. The names were then presented auditorily over the computer’s speakers.” As in the original study, no additional cues will be provided to suggest word-object pairings within individual trials, and participants will complete a 4-alternative forced-choice test following each condition.
 
 ### Analysis Plan
 The analysis plan will replicate the original study’s strategy closely. Data cleaning rules include removing trials with response times exceeding three standard deviations from the participant’s mean or below 200 ms. Data exclusions will follow the criteria set forth in the “Exclusions” section of this protocol. We will calculate the mean accuracy for each participant in each condition and conduct a repeated-measures ANOVA to test for differences across the 2x2, 3x3, and 4x4 conditions.
@@ -44,16 +42,16 @@ The analysis plan will replicate the original study’s strategy closely. Data c
 The primary analysis of interest is the repeated-measures ANOVA, testing whether accuracy varies significantly across conditions with different ambiguity levels. Additional exploratory analyses will examine potential learning patterns across trials.
 
 ### Differences from Original Study
-Our study aims to mirror the original as closely as possible. However, differences may arise from using a different sample frame (our university student pool) and potential minor procedural adjustments due to updated software or lab equipment. Based on the literature, these differences are not expected to substantially impact the effect, as similar cross-situational learning effects have been observed across various participant pools and setups.
+Our study aims to mirror the original as closely as possible. However, differences may arise from using a different sample frame (our university student pool) and potential minor procedural adjustments due to updated software. Based on the literature, these differences are not expected to substantially impact the effect.
 
 ### Methods Addendum (Post Data Collection)
 *(Comment this section out prior to final report with data collection)*
 
 #### Actual Sample
-Report actual sample size, demographics, and exclusions based on predefined rules.
+Expected to be 38 participants. 
 
 #### Differences from pre-data collection methods plan
-Any deviations from the original methods plan or state “none.”
+None. 
 
 ## Results
 
@@ -73,9 +71,18 @@ Data preparation following the analysis plan.
 #### Prepare data for analysis - create columns etc.
 ```
 
-### Confirmatory analysis
+### Confirmatory Analysis
 
-The analyses as specified in the analysis plan.
+We will perform a **repeated-measures ANOVA** to assess differences in accuracy across the three conditions: 2x2, 3x3, and 4x4. This test will evaluate whether the degree of within-trial ambiguity significantly affects participants’ accuracy in learning word-referent pairings.
+
+The analysis steps are as follows:
+1. **Accuracy Calculation**: For each participant, compute the mean accuracy in each condition.
+2. **ANOVA Assumptions Check**: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction.
+3. **Main Analysis**: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions.
+4. **Post-Hoc Comparisons (if needed)**: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.
+
+This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized. 
+
 
 *Side-by-side graph with original graph is ideal here*
 
