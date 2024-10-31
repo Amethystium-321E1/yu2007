@@ -10,6 +10,10 @@ format:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
+**[The github repo for the full project](https://github.com/ucsd-psych201a/yu2007/tree/main)**
+
+**[The github repo of Pengjia Cui](https://github.com/Amethystium-321E1/yu2007)**
+
 ## Introduction
 
 The stimuli will consist of 54 unfamiliar objects paired with 54 pseudowords, divided into sets of 18 word-referent pairs. Pseudowords will be generated to sound like plausible English words but lack meaning, while the objects will be unfamiliar to prevent prior knowledge from influencing learning.
@@ -57,7 +61,20 @@ None.
 
 ### Data preparation
 
-Data preparation following the analysis plan.
+Data preparation will follow the steps outlined in the Analysis Plan to ensure consistent and accurate processing. The following steps will be applied:
+
+1. **Data Cleaning**:
+   - Exclude trials with response times that exceed three standard deviations from each participant’s mean RT or are under 200 ms (The criteria may need to be slightly changed). Such trials are flagged as outliers, indicating inattentive or anticipatory responses.
+
+2. **Calculating Mean Accuracy**:
+   - Calculate the mean accuracy score for each participant in each condition (2x2, 3x3, and 4x4). These scores will be the dependent variable for ANOVA.
+
+3. **Exclusion of Participants**:
+   - Apply participant exclusion criteria as specified in the Exclusions section (The criteria may need to be slightly changed).
+
+4. **Final Dataset Creation**:
+   - The cleaned data will include mean accuracy scores per condition for each participant who meets the inclusion criteria. This dataset will be used for the confirmatory analysis.
+
 
 ```{r include=F}
 ### Data Preparation
@@ -76,9 +93,13 @@ Data preparation following the analysis plan.
 We will perform a **repeated-measures ANOVA** to assess differences in accuracy across the three conditions: 2x2, 3x3, and 4x4. This test will evaluate whether the degree of within-trial ambiguity significantly affects participants’ accuracy in learning word-referent pairings.
 
 The analysis steps are as follows:
+
 1. **Accuracy Calculation**: For each participant, compute the mean accuracy in each condition.
+
 2. **ANOVA Assumptions Check**: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction.
+
 3. **Main Analysis**: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions.
+
 4. **Post-Hoc Comparisons (if needed)**: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.
 
 This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized. 

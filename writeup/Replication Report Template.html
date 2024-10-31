@@ -105,6 +105,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+<p><strong><a href="https://github.com/ucsd-psych201a/yu2007/tree/main">The github repo for the full project</a></strong></p>
+<p><strong><a href="https://github.com/Amethystium-321E1/yu2007">The github repo of Pengjia Cui</a></strong></p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>The stimuli will consist of 54 unfamiliar objects paired with 54 pseudowords, divided into sets of 18 word-referent pairs. Pseudowords will be generated to sound like plausible English words but lack meaning, while the objects will be unfamiliar to prevent prior knowledge from influencing learning.</p>
@@ -156,12 +158,36 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <section id="data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-preparation">Data preparation</h3>
-<p>Data preparation following the analysis plan.</p>
+<p>Data preparation will follow the steps outlined in the Analysis Plan to ensure consistent and accurate processing. The following steps will be applied:</p>
+<ol type="1">
+<li><strong>Data Cleaning</strong>:
+<ul>
+<li>Exclude trials with response times that exceed three standard deviations from each participant’s mean RT or are under 200 ms (The criteria may need to be slightly changed). Such trials are flagged as outliers, indicating inattentive or anticipatory responses.</li>
+</ul></li>
+<li><strong>Calculating Mean Accuracy</strong>:
+<ul>
+<li>Calculate the mean accuracy score for each participant in each condition (2x2, 3x3, and 4x4). These scores will be the dependent variable for ANOVA.</li>
+</ul></li>
+<li><strong>Exclusion of Participants</strong>:
+<ul>
+<li>Apply participant exclusion criteria as specified in the Exclusions section (The criteria may need to be slightly changed).</li>
+</ul></li>
+<li><strong>Final Dataset Creation</strong>:
+<ul>
+<li>The cleaned data will include mean accuracy scores per condition for each participant who meets the inclusion criteria. This dataset will be used for the confirmatory analysis.</li>
+</ul></li>
+</ol>
 </section>
 <section id="confirmatory-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="confirmatory-analysis">Confirmatory Analysis</h3>
 <p>We will perform a <strong>repeated-measures ANOVA</strong> to assess differences in accuracy across the three conditions: 2x2, 3x3, and 4x4. This test will evaluate whether the degree of within-trial ambiguity significantly affects participants’ accuracy in learning word-referent pairings.</p>
-<p>The analysis steps are as follows: 1. <strong>Accuracy Calculation</strong>: For each participant, compute the mean accuracy in each condition. 2. <strong>ANOVA Assumptions Check</strong>: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction. 3. <strong>Main Analysis</strong>: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions. 4. <strong>Post-Hoc Comparisons (if needed)</strong>: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.</p>
+<p>The analysis steps are as follows:</p>
+<ol type="1">
+<li><p><strong>Accuracy Calculation</strong>: For each participant, compute the mean accuracy in each condition.</p></li>
+<li><p><strong>ANOVA Assumptions Check</strong>: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction.</p></li>
+<li><p><strong>Main Analysis</strong>: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions.</p></li>
+<li><p><strong>Post-Hoc Comparisons (if needed)</strong>: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.</p></li>
+</ol>
 <p>This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized.</p>
 <p><em>Side-by-side graph with original graph is ideal here</em></p>
 </section>
