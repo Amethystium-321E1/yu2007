@@ -10,9 +10,9 @@ format:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
-**[The github repo for the full project](https://github.com/ucsd-psych201a/yu2007/tree/main)**
+[**The github repo for the full project**](https://github.com/ucsd-psych201a/yu2007/tree/main)
 
-**[The github repo of Pengjia Cui](https://github.com/Amethystium-321E1/yu2007)**
+[**The github repo of Pengjia Cui**](https://github.com/Amethystium-321E1/yu2007)
 
 ## Introduction
 
@@ -30,32 +30,77 @@ The original paper can be accessed via [DOI](https://doi.org/10.1111/j.1467-9280
 
 ### Power Analysis
 
-
 ### Planned Sample
-The planned sample size is set at 38 participants based on power analysis, with a termination rule allowing for additional recruitment if data exclusions reduce the usable sample below 30. Participants will be recruited from a university student pool. The sampling frame is limited to native English-speaking adults aged 18 to 35, and participants will receive monetary compensation (by Yu & Simth 2007, 7$ each person). No preselection rules are applied beyond these demographic and language criteria. 
+
+The planned sample size is set at 38 participants based on power analysis, with a termination rule allowing for additional recruitment if data exclusions reduce the usable sample below 30. Participants will be recruited from a university student pool. The sampling frame is limited to native English-speaking adults aged 18 to 35, and participants will receive monetary compensation (by Yu & Simth 2007, 7\$ each person). No preselection rules are applied beyond these demographic and language criteria.
 
 ### Materials
+
 All materials will follow the original article’s description precisely. As stated in the article, “the stimuli were slides containing pictures of uncommon objects (We'll use JsPsysch for that) paired with auditorily presented pseudowords.(18 images and 18 wav files on [Google Drive](https://drive.google.com/drive/folders/1qu7-ZgbhbMWOzZQxvXnVMCdSLIasc-o8))” The pseudowords are computer-generated to maintain phonotactic probability in English. The word-referent pairs, experimental setup, and conditions (2x2, 3x3, and 4x4) will be recreated according to the original specifications, with each pair presented six times across trials.
 
 ### Procedure
+
 The procedure will follow Yu & Smith (2007) with minimal modification: “Each trial began with the simultaneous visual presentation of the referents on a computer monitor. The names were then presented auditorily over the computer’s speakers.” As in the original study, no additional cues will be provided to suggest word-object pairings within individual trials, and participants will complete a 4-alternative forced-choice test following each condition.
 
 ### Analysis Plan
+
 The analysis plan will replicate the original study’s strategy closely. Data cleaning rules include removing trials with response times exceeding three standard deviations from the participant’s mean or below 200 ms. Data exclusions will follow the criteria set forth in the “Exclusions” section of this protocol. We will calculate the mean accuracy for each participant in each condition and conduct a repeated-measures ANOVA to test for differences across the 2x2, 3x3, and 4x4 conditions.
 
 The primary analysis of interest is the repeated-measures ANOVA, testing whether accuracy varies significantly across conditions with different ambiguity levels. Additional exploratory analyses will examine potential learning patterns across trials.
 
 ### Differences from Original Study
+
 Our study aims to mirror the original as closely as possible. However, differences may arise from using a different sample frame (our university student pool) and potential minor procedural adjustments due to updated software. Based on the literature, these differences are not expected to substantially impact the effect.
 
 ### Methods Addendum (Post Data Collection)
+
 *(Comment this section out prior to final report with data collection)*
 
 #### Actual Sample
-Expected to be 38 participants. 
+
+Expected to be 38 participants.
 
 #### Differences from pre-data collection methods plan
-None. 
+
+None.
+
+## Design Overview
+
+1.  How many factors were manipulated?
+
+-   The trial ambiguity (2x2 3x3 4x4)
+
+2.  How many measures were taken?
+
+-   Two, the accuracy and response time
+
+3.  Did it use a within-participants or between-participants design?
+
+- within-participants
+
+4.  Were measures repeated?
+
+- Yes, repeated measure for each level ambiguity
+
+5.  What would have been the consequence of changing one of these decisions? (e.g. moving from within to between participants). Could it have been either way?
+
+- Since the sample isn't large, conducting between-participants design could cause higher variation
+
+6.  Were steps taken to reduce demand characteristics?
+
+- Yes, we use pseudo words, computer generated pronunciation and uncommon images
+
+7.  How would you critique the design?
+
+- The sample size should be larger
+
+8.  Can you think of any potential confounds to the study?
+
+- The backgrounds of participants, say if someone is multi-lingual. And the syllables of the words may differ. 
+
+9.  Do you see any limitations to generalizability?
+
+- The sample comes from 18~35 years old adults. Poor generalizability expected on younger groups. 
 
 ## Results
 
@@ -63,18 +108,14 @@ None.
 
 Data preparation will follow the steps outlined in the Analysis Plan to ensure consistent and accurate processing. The following steps will be applied:
 
-1. **Data Cleaning**:
-   - Exclude trials with response times that exceed three standard deviations from each participant’s mean RT or are under 200 ms (The criteria may need to be slightly changed). Such trials are flagged as outliers, indicating inattentive or anticipatory responses.
-
-2. **Calculating Mean Accuracy**:
-   - Calculate the mean accuracy score for each participant in each condition (2x2, 3x3, and 4x4). These scores will be the dependent variable for ANOVA.
-
-3. **Exclusion of Participants**:
-   - Apply participant exclusion criteria as specified in the Exclusions section (The criteria may need to be slightly changed).
-
-4. **Final Dataset Creation**:
-   - The cleaned data will include mean accuracy scores per condition for each participant who meets the inclusion criteria. This dataset will be used for the confirmatory analysis.
-
+1.  **Data Cleaning**:
+    -   Exclude trials with response times that exceed three standard deviations from each participant’s mean RT or are under 200 ms (The criteria may need to be slightly changed). Such trials are flagged as outliers, indicating inattentive or anticipatory responses.
+2.  **Calculating Mean Accuracy**:
+    -   Calculate the mean accuracy score for each participant in each condition (2x2, 3x3, and 4x4). These scores will be the dependent variable for ANOVA.
+3.  **Exclusion of Participants**:
+    -   Apply participant exclusion criteria as specified in the Exclusions section (The criteria may need to be slightly changed).
+4.  **Final Dataset Creation**:
+    -   The cleaned data will include mean accuracy scores per condition for each participant who meets the inclusion criteria. This dataset will be used for the confirmatory analysis.
 
 ```{r include=F}
 ### Data Preparation
@@ -94,16 +135,15 @@ We will perform a **repeated-measures ANOVA** to assess differences in accuracy 
 
 The analysis steps are as follows:
 
-1. **Accuracy Calculation**: For each participant, compute the mean accuracy in each condition.
+1.  **Accuracy Calculation**: For each participant, compute the mean accuracy in each condition.
 
-2. **ANOVA Assumptions Check**: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction.
+2.  **ANOVA Assumptions Check**: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction.
 
-3. **Main Analysis**: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions.
+3.  **Main Analysis**: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions.
 
-4. **Post-Hoc Comparisons (if needed)**: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.
+4.  **Post-Hoc Comparisons (if needed)**: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.
 
-This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized. 
-
+This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized.
 
 *Side-by-side graph with original graph is ideal here*
 
@@ -115,8 +155,8 @@ Any follow-up analyses desired (not required).
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result. 
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long. 
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
