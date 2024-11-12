@@ -76,31 +76,31 @@ None.
 
 3.  Did it use a within-participants or between-participants design?
 
-- within-participants
+-   within-participants
 
 4.  Were measures repeated?
 
-- Yes, repeated measure for each level ambiguity
+-   Yes, repeated measure for each level ambiguity
 
 5.  What would have been the consequence of changing one of these decisions? (e.g. moving from within to between participants). Could it have been either way?
 
-- Since the sample isn't large, conducting between-participants design could cause higher variation
+-   Since the sample isn't large, conducting between-participants design could cause higher variation
 
 6.  Were steps taken to reduce demand characteristics?
 
-- Yes, we use pseudo words, computer generated pronunciation and uncommon images
+-   Yes, we use pseudo words, computer generated pronunciation and uncommon images
 
 7.  How would you critique the design?
 
-- The sample size should be larger
+-   The sample size should be larger
 
 8.  Can you think of any potential confounds to the study?
 
-- The backgrounds of participants, say if someone is multi-lingual. And the syllables of the words may differ. 
+-   The backgrounds of participants, say if someone is multi-lingual. And the syllables of the words may differ.
 
 9.  Do you see any limitations to generalizability?
 
-- The sample comes from 18~35 years old adults. Poor generalizability expected on younger groups. 
+-   The sample comes from 18\~35 years old adults. Poor generalizability expected on younger groups.
 
 ## Results
 
@@ -118,15 +118,31 @@ Data preparation will follow the steps outlined in the Analysis Plan to ensure c
     -   The cleaned data will include mean accuracy scores per condition for each participant who meets the inclusion criteria. This dataset will be used for the confirmatory analysis.
 
 ```{r include=F}
-### Data Preparation
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(tidyverse)
+library(effsize)
+library(pwr)
 
-#### Load Relevant Libraries and Functions
+# Load the data
+data <- read.csv("data/data.csv",sep = "\t")
 
-#### Import data
+data <- data[, -1]
 
-#### Data exclusion / filtering
+# Filter trials with extreme response times
+mean_rt <- mean(data$response_time, na.rm = TRUE)
+sd_rt <- sd(data$response_time, na.rm = TRUE)
+data <- subset(data, response_time >= (mean_rt - 3 * sd_rt) & response_time <= (mean_rt + 3 * sd_rt))
 
-#### Prepare data for analysis - create columns etc.
+# Check participant performance above chance level
+participant_accuracy <- data %>%
+  group_by(respondent) %>%
+  summarize(accuracy = mean(correct))
+
+# Keep participants above chance (50% for binary tasks)
+data <- data[data$respondent %in% participant_accuracy$respondent[participant_accuracy$accuracy > 0.5], ]
+
 ```
 
 ### Confirmatory Analysis
@@ -135,17 +151,88 @@ We will perform a **repeated-measures ANOVA** to assess differences in accuracy 
 
 The analysis steps are as follows:
 
-1.  **Accuracy Calculation**: For each participant, compute the mean accuracy in each condition.
+1.  **Overall Accuracy**
 
-2.  **ANOVA Assumptions Check**: Verify that data meet the assumptions of repeated-measures ANOVA, including sphericity. If sphericity is violated, apply a Greenhouse-Geisser correction.
+    ```{r}
+    # Calculate overall accuracy
+    overall_accuracy <- mean(data$correct, na.rm = TRUE)
+    print(paste("Overall Accuracy: ", round(overall_accuracy * 100, 2), "%"))
+    ```
+We now only finished the part for 2 by 2 condition. The results are currently based on this term. The results are slightly higher than the original paper. More strict control may need to be implemented. 
 
-3.  **Main Analysis**: Conduct the repeated-measures ANOVA to test the main hypothesis. The null hypothesis is that there is no difference in accuracy across conditions; the alternative hypothesis is that accuracy differs significantly between conditions.
 
-4.  **Post-Hoc Comparisons (if needed)**: If the ANOVA reveals significant differences, perform post-hoc pairwise comparisons with Bonferroni correction to determine which conditions differ from each other.
+2.  **Image-Specific Accuracy**
 
-This analysis will allow us to confirm whether cross-situational learning accuracy decreases with increased ambiguity, as hypothesized.
+    ```{r}
+    img_acc <- data %>%
+      group_by(correct_image) %>%
+      summarize(accuracy = mean(correct, na.rm = TRUE))
+
+    ggplot(img_acc, aes(x = correct_image, y = accuracy)) +
+      geom_line(color = "grey",linewidth = 1) + 
+      geom_point(size = 1) +
+      scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
+      labs(x = "Per Image", y = "Accuracy")
+    ```
+The accuracy of each image varies. Img 15 shows 100% accuracy on every participant; this may be due to the pseudoword of this picture sounds like a combination of a few letters. The other results match our expection. 
+
+
+3.  **Response Time by Correctness**
+
+    ```{r}
+    response_time_summary <- data %>%
+      group_by(correct) %>%
+      summarize(
+        mean_response_time = mean(response_time, na.rm = TRUE),
+        median_response_time = median(response_time, na.rm = TRUE),
+        sd_response_time = sd(response_time, na.rm = TRUE)
+      )
+    print(response_time_summary)
+
+    ggplot(data, aes(x = factor(correct, labels = c("Incorrect", "Correct")), y = response_time)) +
+      geom_boxplot(fill = "skyblue3", alpha = 0.7) +
+      stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "red") +
+      labs(
+        title = "Response Time by Correctness",
+        x = "Response Accuracy",
+        y = "Response Time"
+      ) +
+      theme_minimal()
+    ```
+The response time of correct answers is significantly lower than incorrect ones, showing hesitation as expected. 
+
+
+4.  **T-test**
+
+    ```{r}
+    # Conduct t-test for response times
+    t_test <- t.test(response_time ~ correct, data = data)
+    t_test
+    ```
+We here have a p-value of 0.02, which cannot reject the null hypothesis. 
+During the writing of this report another result was recorded but was not counted in the above coding. If we count the last result, p-value would be approximately 0.0005357, since the last participant hit the full score. 
+In the meantime, it shows that a much smaller sample than planned would largely affect the result. 
+
+
+5.  **Power analysis**
+
+    ```{r}
+    cohens_d_result <- cohen.d(data$response_time ~ data$correct)
+    print(cohens_d_result)
+
+
+    pwr_result <- pwr.t.test(d = 0.5382748, sig.level = 0.05, power = 0.80, type = "two.sample")
+    print(pwr_result)
+
+    ```
+Based on the pilot test, we observed a medium effect size of 0.54 in the 2×2 condition. A power analysis using G*Power was conducted for a two-sample t-test with a significance level of $\alpha$=0.05 and a desired power of 0.80. The analysis revealed that a minimum of 56 participants per group would be required to achieve adequate statistical power for detecting this effect size. It’s important to note that these estimates are derived solely from the 2×2 condition, which may limit their generalizability.
+
 
 *Side-by-side graph with original graph is ideal here*
+
+### Links
+- [html file](https://github.com/ucsd-psych201a/yu2007/tree/main/stimuli)
+- [stimuli list](https://github.com/ucsd-psych201a/yu2007/blob/main/coding_test.html)
 
 ### Exploratory analyses
 
