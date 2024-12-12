@@ -8,35 +8,58 @@ format:
     toc_depth: 3
 ---
 
-<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
-
 [**The github repo for the full project**](https://github.com/ucsd-psych201a/yu2007/tree/main)
 
 [**The github repo of Pengjia Cui**](https://github.com/Amethystium-321E1/yu2007)
 
 ## Introduction
 
-The stimuli will consist of 54 unfamiliar objects paired with 54 pseudowords, divided into sets of 18 word-referent pairs. Pseudowords will be generated to sound like plausible English words but lack meaning, while the objects will be unfamiliar to prevent prior knowledge from influencing learning.
+The study "Rapid Word Learning Under Uncertainty via Cross-Situational Statistics" by Yu and Smith (2007) investigated how adults learn new words in ambiguous settings. The authors proposed that a cross-situational learning strategy could solve the indeterminacy problem, where multiple possible meanings exist for a new word. This strategy involves keeping track of word-referent pairings across multiple encounters and using statistical probabilities to determine the correct word-referent mappings.
 
-Participants will be presented with multiple trials in three conditions: 2 words with 2 objects, 3 words with 3 objects, and 4 words with 4 objects. In each trial, words and referents are shown simultaneously without clues linking them, requiring participants to learn the correct word-referent pairings by tracking co-occurrences across trials. After the learning phase, participants will take a forced-choice test to identify the correct referents for each word.
+Yu and Smith (2007) hypothesized that learners store potential word-referent pairings across trials, evaluate the statistical evidence, and eventually map words to their correct referents. This cross-situational learning mechanism was tested in an experiment where adults were briefly exposed to trials containing multiple spoken words and pictures of individual objects. No within-trial information was given to link the words and objects. The study found that participants could learn the word-picture mappings through cross-trial statistical relations.  
 
-The main challenge will be ensuring the ambiguity of each trial while maintaining statistical information across trials, along with controlling the timing and stimuli presentation to match the original study.
+This replication project aims to reproduce the findings of Yu and Smith (2007) and further explore the role of cross-situational learning in word acquisition. We will be closely following their methodology and analysis to determine the robustness of their findings. Any modifications or deviations from the original study will be explicitly noted in our report.
 
-The primary challenge lies in replicating the complex design, ensuring that each trial maintains ambiguity while preserving cross-trial statistical regularities that allow participants to learn the correct word-referent pairings. Additionally, ensuring accurate timing and stimuli presentation, consistent with the original study, will be crucial for a valid replication.
+The original paper can be accessed via [DOI](https://doi.org/10.1111/j.1467-9280.2007.01915.x).
 
-The original paper can be accessed via [DOI](https://doi.org/10.1111/j.1467-9280.2007.01915.x), and the replication materials are available in the [repository here](https://github.com/InterFusion-0053/yu2007/).
+-   **Factor Manipulated**: Within-trial ambiguity through three conditions (2×2, 3×3, and 4×4).
+-   **Measures**: Accuracy in learning word-referent pairs and response time.
+-   **Design**: Within-participants design, reducing variance from individual differences.
+-   **Confounds**: Familiarity/memorization strategies and generalizability due to the use of pseudowords and uncommon objects.
+
+The study reduced demand characteristics by using pseudowords and avoiding explicit cues, requiring participants to rely solely on cross-trial statistical learning. However, testing was limited to adults, which might limit applicability to children or naturalistic learning environments.
 
 ## Methods
 
 ### Power Analysis
 
+The original experiment included 38 participants, all undergraduate students from Indiana University. Participants received course credit or \$7 for participation.
+
+```{r}
+library(pwr)
+effect_size<-1.425
+alpha<-0.05
+result <- pwr.t.test(d = effect_size, n = 38, sig.level = alpha,alternative="greater")
+print(result)
+```
+
+-   Power: 0.9999967, indicating nearly 100% probability of rejecting the null hypothesis if the alternative hypothesis is true.
+
 ### Planned Sample
 
-The planned sample size is set at 38 participants based on power analysis, with a termination rule allowing for additional recruitment if data exclusions reduce the usable sample below 30. Participants will be recruited from a university student pool. The sampling frame is limited to native English-speaking adults aged 18 to 35, and participants will receive monetary compensation (by Yu & Simth 2007, 7\$ each person). No preselection rules are applied beyond these demographic and language criteria.
+The replication aimed to include 42 participants from Prolific, ensuring high statistical power and maintaining methodological consistency with the original study. All data could be found in *final data.zip* on [**Github**](https://github.com/ucsd-psych201a/yu2007/tree/main).
 
 ### Materials
 
-All materials will follow the original article’s description precisely. As stated in the article, “the stimuli were slides containing pictures of uncommon objects (We'll use JsPsysch for that) paired with auditorily presented pseudowords.(18 images and 18 wav files on [Google Drive](https://drive.google.com/drive/folders/1qu7-ZgbhbMWOzZQxvXnVMCdSLIasc-o8))” The pseudowords are computer-generated to maintain phonotactic probability in English. The word-referent pairs, experimental setup, and conditions (2x2, 3x3, and 4x4) will be recreated according to the original specifications, with each pair presented six times across trials.
+Stimuli included:
+
+-   **Pictures**: Uncommon objects (e.g., canister, facial sauna).
+
+-   **Pseudowords**: Generated to mimic phonotactic probabilities in English.
+
+Stimuli were divided into three sets of 18 word-referent pairs for each condition (2x2, 3x3, 4x4). Training trials were randomly paired, and testing used a 4-alternative forced-choice design.
+
+The pseudowords are computer-generated to maintain phonotactic probability in English. We then created 3x3 and 4x4 using Google Voice Generator. The pictures are based on NOUN Database (http://www.sussex.ac.uk/wordlab/noun)\[(Horst, J. S., & Hout, M. C. (2016))
 
 ### Procedure
 
@@ -54,57 +77,15 @@ Our study aims to mirror the original as closely as possible. However, differenc
 
 ### Methods Addendum (Post Data Collection)
 
-*(Comment this section out prior to final report with data collection)*
-
 #### Actual Sample
 
-Expected to be 38 participants.
+42 participants on Prolific received \$5 for their participation. One participant was excluded from analysis for failure to complete the Condition 3 test phase.
 
 #### Differences from pre-data collection methods plan
 
-None.
-
-## Design Overview
-
-1.  How many factors were manipulated?
-
--   The trial ambiguity (2x2 3x3 4x4)
-
-2.  How many measures were taken?
-
--   Two, the accuracy and response time
-
-3.  Did it use a within-participants or between-participants design?
-
--   within-participants
-
-4.  Were measures repeated?
-
--   Yes, repeated measure for each level ambiguity
-
-5.  What would have been the consequence of changing one of these decisions? (e.g. moving from within to between participants). Could it have been either way?
-
--   Since the sample isn't large, conducting between-participants design could cause higher variation
-
-6.  Were steps taken to reduce demand characteristics?
-
--   Yes, we use pseudo words, computer generated pronunciation and uncommon images
-
-7.  How would you critique the design?
-
--   The sample size should be larger
-
-8.  Can you think of any potential confounds to the study?
-
--   The backgrounds of participants, say if someone is multi-lingual. And the syllables of the words may differ.
-
-9.  Do you see any limitations to generalizability?
-
--   The sample comes from 18\~35 years old adults. Poor generalizability expected on younger groups.
+No substantial deviations from the original methods.
 
 ## Results
-
-[Paradigm](https://ucsd-psych201a.github.io/yu2007/coding.html)
 
 ### Data preparation
 
@@ -123,51 +104,66 @@ Data preparation will follow the steps outlined in the Analysis Plan to ensure c
 
 ```{r}
 library(dplyr)
-df_list <- list()
-file_list <- list.files("raw_data/", pattern = "\\.csv$", full.names = TRUE)
-
-for (i in seq_along(file_list)) {
-  df <- read.csv(file_list[i])
-  df <- df[, (ncol(df) - 4):ncol(df)]
-  df <- na.omit(df)
-  df$respondent <- i - 1
-  df_list[[i]] <- df
-}
-
-data <- bind_rows(df_list)
-data$correct <- tolower(data$correct) == "true"
-data
-```
-
-```{r include=F}
 library(ggplot2)
 library(tidyr)
 library(tidyverse)
 library(effsize)
 library(pwr)
-library(reticulate)
 
+# Function to process files (improved)
+process_files <- function(file_list, condition_label) {
+  df_list <- list()
+  for (i in seq_along(file_list)) {
+    df <- read.csv(file_list[i])
+    df <- df[, (ncol(df) - 4):ncol(df)] # Select the last 5 columns
+    df <- na.omit(df) # Remove rows with NA values
+    df$respondent <- substr(file_list[i], 23, 32) # Add a respondent ID
+    df$condition <- condition_label # Add a condition label
+    df$correct <- tolower(df$correct) == "true" # Convert to logical HERE!
+    df_list[[i]] <- df
+  }
+  bind_rows(df_list)
+}
 
-# Filter trials with extreme response times
-mean_rt <- mean(data$response_time, na.rm = TRUE)
-sd_rt <- sd(data$response_time, na.rm = TRUE)
-data <- subset(data, response_time >= (mean_rt - 3 * sd_rt) & response_time <= (mean_rt + 3 * sd_rt))
+# Get file lists
+file_list_c1 <- list.files("final data/condition1/", pattern = "\\.csv$", full.names = TRUE)
+file_list_c2 <- list.files("final data/condition2/", pattern = "\\.csv$", full.names = TRUE)
+file_list_c3 <- list.files("final data/condition3/", pattern = "\\.csv$", full.names = TRUE)
 
-# Check participant performance above chance level
-participant_accuracy <- data %>%
-  group_by(respondent) %>%
-  summarize(accuracy = mean(correct))
+# Process each condition's data
+data_c1 <- process_files(file_list_c1, "condition1")
+data_c2 <- process_files(file_list_c2, "condition2")
+data_c3 <- process_files(file_list_c3, "condition3")
 
-# Keep participants above chance (50% for binary tasks)
-data <- data[data$respondent %in% participant_accuracy$respondent[participant_accuracy$accuracy > 0.5], ]
+# Combine all data (now works correctly)
+data <- bind_rows(data_c1, data_c2, data_c3)
 
+# Now data$correct is consistently logical
+str(data$correct) # Check the structure
+```
+
+```{r}
+# Select necessary columns for analysis
+selected_data1 <- data_c1 %>% select(correct_choice, correct_image, response_letter, correct, response_time, respondent, condition)
+selected_data2 <- data_c2 %>% select(correct_choice, correct_image, response_letter, correct, response_time, respondent, condition)
+selected_data3 <- data_c3 %>% select(correct_choice, correct_image, response_letter, correct, response_time, respondent, condition)
+
+# Remove rows with NAs
+cleaned_data1 <- na.omit(selected_data1)
+cleaned_data1$correct <- as.logical(cleaned_data1$correct)
+cleaned_data2 <- na.omit(selected_data2)
+cleaned_data2$correct <- as.logical(cleaned_data2$correct)
+cleaned_data3 <- na.omit(selected_data3)
+cleaned_data3$correct <- as.logical(cleaned_data3$correct)
+
+data <- bind_rows(cleaned_data1, cleaned_data2, cleaned_data3)
 ```
 
 ### Confirmatory Analysis
 
 We will perform a **repeated-measures ANOVA** to assess differences in accuracy across the three conditions: 2x2, 3x3, and 4x4. This test will evaluate whether the degree of within-trial ambiguity significantly affects participants’ accuracy in learning word-referent pairings.
 
-The analysis steps are as follows:
+#### Accuracy
 
 1.  **Overall Accuracy**
 
@@ -177,90 +173,218 @@ overall_accuracy <- mean(data$correct, na.rm = TRUE)
 print(paste("Overall Accuracy: ", round(overall_accuracy * 100, 2), "%"))
 ```
 
-We now only finished the part for 2 by 2 condition. The results are currently based on this term. The results are slightly higher than the original paper. More strict control may need to be implemented.
+```{r}
+# Check participant performance above chance level
+participant_accuracy <- data %>%
+  group_by(condition, respondent) %>%
+  summarise(
+    participant_accuracy = mean(correct, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+mean_accuracy <- participant_accuracy %>%
+  group_by(condition) %>%
+  summarise(
+    mean_accuracy = mean(participant_accuracy, na.rm = TRUE),
+    se_accuracy = sd(participant_accuracy, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+# Accuracy by condition plot
+ggplot(mean_accuracy, aes(x = condition, y = mean_accuracy)) +
+  geom_bar(stat = "identity", width = 0.4) +
+  geom_errorbar(aes(ymin = mean_accuracy - se_accuracy, ymax = mean_accuracy + se_accuracy), 
+                width = 0.1, color = "black") +
+  geom_hline(yintercept = 0.25, linetype = "dotted", color = "black") +
+  annotate("text", x = 3.35, y = 0.27, label = "Chance", 
+           hjust = 0, size = 3, color = "black") +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
+  labs(
+    title = "Participant Accuracy by Condition",
+    x = "Condition",
+    y = "Accuracy"
+  )
+
+
+```
+
+#### The original figure from Yu & Smith (2007):
+
+![](Yu%20&%20Smith%20(2007).jpg)
+
+Compared to the original study, the error bars for Conditions 1 and 2 are larger in our experiment, indicating greater variability in participant performance. In the original study, the error bars are smaller, reflecting more consistent accuracy among participants across all conditions.
+
+```{r}
+condition_accuracy <- data %>%
+  group_by(condition) %>%
+  summarise(Accuracy = mean(correct), .groups = 'drop')
+
+condition_accuracy
+```
+
+-   In comparison to the original experiment, our accuracy data reflects similar but slightly lower performance across all conditions.
+-   In the original study, participants discovered, on average, more than 16 of the 18 pairs in the 2x2 condition, corresponding to an accuracy above 88.9%, while our participants achieved an average accuracy of 68.1%.
+-   For the 3x3 condition, the original study reported participants discovering more than 13 of the 18 pairs, or an accuracy above 72.2%, while our participants averaged 55.5%.
+-   In the 4x4 condition, the original study indicated participants discovered nearly 10 pairs, or an accuracy of approximately 55.6%, while our participants averaged 39.0%.
+-   Both our study and the original experiment demonstrate a pattern of declining performance as ambiguity increases across conditions.
 
 2.  **Image-Specific Accuracy**
 
 ```{r}
-img_acc <- data %>%
+img_acc_c1 <- data_c1 %>%
   group_by(correct_image) %>%
   summarize(accuracy = mean(correct, na.rm = TRUE))
 
-ggplot(img_acc, aes(x = correct_image, y = accuracy)) +
+ggplot(img_acc_c1, aes(x = correct_image, y = accuracy)) +
   geom_line(color = "grey",linewidth = 1) + 
   geom_point(size = 1) +
   scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
-  labs(x = "Per Image", y = "Accuracy")
+  labs(x = "Per Image", y = "Accuracy", title = "Condition1")
+
+img_acc_c2 <- data_c2 %>%
+  group_by(correct_image) %>%
+  summarize(accuracy = mean(correct, na.rm = TRUE))
+
+ggplot(img_acc_c2, aes(x = correct_image, y = accuracy)) +
+  geom_line(color = "grey",linewidth = 1) + 
+  geom_point(size = 1) +
+  scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
+  labs(x = "Per Image", y = "Accuracy", title = "Condition2")
+
+img_acc_c3 <- data_c3 %>%
+  group_by(correct_image) %>%
+  summarize(accuracy = mean(correct, na.rm = TRUE))
+
+ggplot(img_acc_c3, aes(x = correct_image, y = accuracy)) +
+  geom_line(color = "grey",linewidth = 1) + 
+  geom_point(size = 1) +
+  scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
+  labs(x = "Per Image", y = "Accuracy", title = "Condition3")
 ```
 
-The accuracy of each image varies. Img 15 shows 100% accuracy on every participant; this may be due to the pseudoword of this picture sounds like a combination of a few letters. The other results match our expection.
+The plot presents accuracy by image for each condition, showing how participants performed across the 18 images in the 2x2, 3x3, and 4x4 conditions. In Condition 1, accuracy remains relatively stable across all images, with minimal variability. Condition 2 and Condition 3 show slightly greater variability but no extreme deviations.
 
-3.  **Response Time by Correctness**
+3.  **Effect of condition** (ANOVA)
 
 ```{r}
-response_time_summary <- data %>%
-  group_by(correct) %>%
-  summarize(
-    mean_response_time = mean(response_time, na.rm = TRUE),
-    median_response_time = median(response_time, na.rm = TRUE),
-    sd_response_time = sd(response_time, na.rm = TRUE)
+participant_data <- data %>%
+  group_by(condition, respondent) %>%
+  summarise(
+    perc = mean(correct, na.rm = TRUE),
+    res_time = mean(response_time, na.rm = TRUE),
+    .groups = 'drop'
   )
-print(response_time_summary)
-
-ggplot(data, aes(x = factor(correct, labels = c("Incorrect", "Correct")), y = response_time)) +
-  geom_boxplot(fill = "skyblue3", alpha = 0.7) +
-  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "red") +
-  labs(
-    title = "Response Time by Correctness",
-    x = "Response Accuracy",
-    y = "Response Time"
-  ) +
-  theme_minimal()
+participant_data$condition <- as.factor(participant_data$condition)
+anova <- aov(perc ~ condition, data = participant_data)
+summary(anova)
 ```
 
-The response time of correct answers is significantly lower than incorrect ones, showing hesitation as expected.
+-   Our ANOVA results (F = 10.8, p = 5.37e-05) revealed a statistically significant effect of condition on accuracy, indicating that participants’ performance varied significantly across the three conditions. This finding aligns with the original study, which also reported a decline in accuracy as task complexity increased from the 2x2 to 4x4 condition.
 
-4.  **T-test**
+-   This provides sufficient evidence for that, similar to the original study, ambiguity plays an important role in participants’ ability to learn word-referent pairs.
+
+4.  **Post-hoc**
 
 ```{r}
-# Conduct t-test for response times
-t_test <- t.test(response_time ~ correct, data = data)
-t_test
+tukey <- TukeyHSD(anova)
+print(tukey)
 ```
 
-We here have a p-value of 0.02, which cannot reject the null hypothesis. During the writing of this report another result was recorded but was not counted in the above coding. If we count the last result, p-value would be approximately 0.0005357, since the last participant hit the full score. In the meantime, it shows that a much smaller sample than planned would largely affect the result.
+-   The post-hoc analysis highlights statistically significant differences in accuracy across the conditions, particularly between Condition 3 and the other two conditions. This is consistent with the findings of the original study, where performance declined as ambiguity increased.
 
-5.  **Power analysis**
-
-    ```{r}
-    cohens_d_result <- cohen.d(data$response_time ~ data$correct)
-    print(cohens_d_result)
-
-
-    pwr_result <- pwr.t.test(d = 0.5382748, sig.level = 0.05, power = 0.80, type = "two.sample")
-    print(pwr_result)
-
-    ```
-
-    Based on the pilot test, we observed a medium effect size of 0.54 in the 2×2 condition. A power analysis using G\*Power was conducted for a two-sample t-test with a significance level of $\alpha$=0.05 and a desired power of 0.80. The analysis revealed that a minimum of 56 participants per group would be required to achieve adequate statistical power for detecting this effect size. It’s important to note that these estimates are derived solely from the 2×2 condition, which may limit their generalizability.
-
-*Side-by-side graph with original graph is ideal here*
-
-### Links
-
--   [html file](https://github.com/ucsd-psych201a/yu2007/tree/main/stimuli)
--   [stimuli list](https://github.com/ucsd-psych201a/yu2007/blob/main/coding_test.html)
+-   In detail, the relatively weak significance between Condition 1 and Condition 2 suggests that participants found the 3x3 condition slightly more challenging than the 2x2 condition, but the effect is less pronounced compared to the drop in accuracy observed in the 4x4 condition.
 
 ### Exploratory analyses
 
-Any follow-up analyses desired (not required).
+**Response Time by Correctness**
+
+```{r}
+data_combined <- bind_rows(
+  mutate(data_c1, condition = "Condition 1"),
+  mutate(data_c2, condition = "Condition 2"),
+  mutate(data_c3, condition = "Condition 3")
+)
+
+# Summarize response times by condition and correctness (optional, for printing)
+response_time_summary <- data_combined %>%
+  group_by(condition, correct) %>%
+  summarize(
+    mean_response_time = mean(response_time, na.rm = TRUE),
+    median_response_time = median(response_time, na.rm = TRUE),
+    sd_response_time = sd(response_time, na.rm = TRUE),
+    .groups = "drop"
+  )
+print(response_time_summary)
+
+
+# Create the faceted boxplot
+ggplot(data_combined, aes(x = factor(correct, labels = c("Incorrect", "Correct")), y = response_time)) +
+  geom_boxplot(fill = "skyblue3", alpha = 0.7) +
+  stat_summary(fun = mean, geom = "point", color = "red", size = 3) + # Increased point size
+  scale_y_log10() +
+  facet_wrap(~ condition) +  # This creates the separate panels
+  labs(
+    title = "Response Time by Correctness Across Conditions",
+    x = "Response Accuracy",
+    y = "Response Time (log scale)"
+  ) +
+  theme_minimal() +
+  theme(strip.text = element_text(size = 12)) #Adjust the size of facet labels
+```
+We use Bartlett's test for multiple groups. 
+```{r}
+bartlett.test(data$response_time~data$condition)
+```
+The differences among each condition are not significant. We now visualize the results over images. 
+
+**Response Time by Images**
+
+```{r}
+response_time_by_image <- data %>%
+  group_by(condition, correct_image) %>%
+  summarise(
+    Mean_ResponseTime = mean(response_time, na.rm = TRUE),
+    .groups = 'drop'
+  )
+
+ggplot(response_time_by_image, aes(x = correct_image, 
+                                   y = Mean_ResponseTime, 
+                                   group = condition, 
+                                   color = condition)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Response Times by Image for Each Condition",
+    x = "Image",
+    y = "Mean Response Time (ms)"
+  ) +
+  scale_x_continuous(breaks = unique(response_time_by_image$correct_image)) +
+  facet_wrap(~condition, scales = "free_x", ncol = 1) +
+  theme_minimal() 
+```
+In Condition 1, response times stabilize quickly after a drop from Image 1 to Image 2, showing minimal variability. Condition 2 shows a significant initial drop but remain stable afterwords. Condition 3 has relatively stable response times and a smaller initial drop. The initial drop across all conditions might suggest participants spend time adapting to the test phase at the beginning.
 
 ## Discussion
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
+Our confirmatory analysis revealed that participants’ performance significantly declined as task ambiguity increased across the three conditions, consistent with the original study’s findings. Accuracy was highest in the 2x2 condition, lower in the 3x3 condition, and lowest in the 4x4 condition, with all conditions exceeding chance levels. While the general pattern replicated the original study, the levels of accuracy in our study was lower across all conditions, and variability was higher, particularly in the more complex conditions. These results suggest a partial replication of the original findings, capturing the overall trend but with differences in the strength and consistency of participant performance.
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
+-   Our exploratory analyses showed that response times increased with task complexity, particularly in the 3x3 condition. Interestingly, a small number of participants in the 4x4 condition still achieved relatively high accuracy within a short response time, suggesting that they may use more effective strategies to resolve high ambiguity.
+
+-   While the overall trend of declining accuracy with increasing task complexity replicated the original findings, the lower accuracy and higher variability in our study suggest the presence of moderating factors. Differences in participant demographics (university students vs. Prolific users), experimental settings, or task delivery (i.e. instructions, timing) could potentially influence the test results.
+
+-   The main challenge in interpreting the results lies in the high variability observed in our study, which could be attributed to uncontrolled external factors. Another important aspect not tested in our replication is the role of foil probability—how often incorrect choices were presented. We ignored the factor due to limited time, which may have affected participants’ ability to differentiate correct from incorrect word pairings. Future studies may attempt to take better controll of external factors and take fol probability into account.
+
+## **Author Contribution Statement**
+
+-   **Hui Junyi**: Experiment coding (trial/training phase coding; pre-test audio check and fullscreen check; randomization; condition order counterbalancing code; debugging; review); pre-registration revisions
+
+-   **Yawen Dong**: Experiment coding (test phase coding; randomization; debugging; review); pre-registration revisions; OSF datapipe setup
+
+-   **Allison Park**: Stimuli analysis and selection; pre-registration original draft; Prolific experiment management; code review
+
+-   **Pengjia Cui**: Stimuli generation code; code review
