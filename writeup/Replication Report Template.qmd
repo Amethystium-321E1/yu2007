@@ -14,20 +14,25 @@ format:
 
 ## Introduction
 
-The study "Rapid Word Learning Under Uncertainty via Cross-Situational Statistics" by Yu and Smith (2007) investigated how adults learn new words in ambiguous settings. The authors proposed that a cross-situational learning strategy could solve the indeterminacy problem, where multiple possible meanings exist for a new word. This strategy involves keeping track of word-referent pairings across multiple encounters and using statistical probabilities to determine the correct word-referent mappings.
+The study *"Rapid Word Learning Under Uncertainty via Cross-Situational Statistics"* by Yu and Smith (2007) examined how adults acquire new words in highly ambiguous settings. The authors proposed a cross-situational learning strategy to address the indeterminacy problem, where multiple possible meanings exist for a new word. This approach involves tracking word-referent pairings across multiple encounters and using statistical probabilities to identify the correct mappings.
 
-Yu and Smith (2007) hypothesized that learners store potential word-referent pairings across trials, evaluate the statistical evidence, and eventually map words to their correct referents. This cross-situational learning mechanism was tested in an experiment where adults were briefly exposed to trials containing multiple spoken words and pictures of individual objects. No within-trial information was given to link the words and objects. The study found that participants could learn the word-picture mappings through cross-trial statistical relations.  
+Yu and Smith hypothesized that learners accumulate potential word-referent pairings over trials, assess the statistical evidence, and eventually resolve ambiguities to form accurate mappings. Their experiment tested this mechanism by briefly exposing adults to trials containing spoken words and images of individual objects, with no within-trial cues linking words to objects. The findings demonstrated that participants successfully learned word-picture pairings through statistical relations observed across trials.
 
-This replication project aims to reproduce the findings of Yu and Smith (2007) and further explore the role of cross-situational learning in word acquisition. We will be closely following their methodology and analysis to determine the robustness of their findings. Any modifications or deviations from the original study will be explicitly noted in our report.
+This replication project seeks to reproduce the findings of Yu and Smith (2007) and further examine the role of cross-situational learning in word acquisition. By closely adhering to their methodology and analysis, we aim to assess the robustness of their conclusions. Any modifications or deviations from the original study will be explicitly detailed in this report.
 
-The original paper can be accessed via [DOI](https://doi.org/10.1111/j.1467-9280.2007.01915.x).
+The original paper is accessible via [DOI](https://doi.org/10.1111/j.1467-9280.2007.01915.x).
 
--   **Factor Manipulated**: Within-trial ambiguity through three conditions (2×2, 3×3, and 4×4).
+Key aspects of the study design include:
+
+-   **Factor Manipulated**: Within-trial ambiguity across three conditions (2×2, 3×3, and 4×4).
+
 -   **Measures**: Accuracy in learning word-referent pairs and response time.
--   **Design**: Within-participants design, reducing variance from individual differences.
--   **Confounds**: Familiarity/memorization strategies and generalizability due to the use of pseudowords and uncommon objects.
 
-The study reduced demand characteristics by using pseudowords and avoiding explicit cues, requiring participants to rely solely on cross-trial statistical learning. However, testing was limited to adults, which might limit applicability to children or naturalistic learning environments.
+-   **Design**: A within-participants design to minimize variance due to individual differences.
+
+-   **Confounds**: The potential influence of familiarity or memorization strategies, and limited generalizability due to the use of pseudowords and uncommon objects.
+
+The study minimized demand characteristics by employing pseudowords and avoiding explicit within-trial cues, requiring participants to rely solely on cross-trial statistical learning. However, restricting the participant pool to adults may limit the findings' applicability to children or naturalistic learning contexts.
 
 ## Methods
 
@@ -47,23 +52,35 @@ print(result)
 
 ### Planned Sample
 
-The replication aimed to include 42 participants from Prolific, ensuring high statistical power and maintaining methodological consistency with the original study. All data could be found in *final data.zip* on [**Github**](https://github.com/ucsd-psych201a/yu2007/tree/main).
+The replication aimed to recruit 42 participants through Prolific to ensure high statistical power and maintain methodological consistency with the original study. Participants were compensated for their time, and data collection adhered to ethical research guidelines. All collected data are available in the `final_data.zip` file on the project's [GitHub repository](https://github.com/ucsd-psych201a/yu2007).
 
 ### Materials
 
-Stimuli included:
+The stimuli included the following:
 
--   **Pictures**: Uncommon objects (e.g., canister, facial sauna).
+-   **Pictures**: Images of uncommon objects (e.g., canister, facial sauna) selected to ensure minimal prior familiarity.
+-   **Pseudowords**: Artificially generated to mimic English phonotactic probabilities.
 
--   **Pseudowords**: Generated to mimic phonotactic probabilities in English.
+The stimuli were divided into three sets of 18 word-referent pairs, corresponding to the three experimental conditions (2×2, 3×3, and 4×4). Training trials consisted of randomly paired word-referent combinations, while testing employed a 4-alternative forced-choice design.
 
-Stimuli were divided into three sets of 18 word-referent pairs for each condition (2x2, 3x3, 4x4). Training trials were randomly paired, and testing used a 4-alternative forced-choice design.
+-   **Pseudoword Generation**: The pseudowords were computer-generated to align with English phonotactic probabilities. Auditory stimuli for the 3×3 and 4×4 conditions were created using the Google Voice Generator.
+-   **Picture Selection**: Images were sourced from the [NOUN Database](http://www.sussex.ac.uk/wordlab/noun) (Horst & Hout, 2016).
 
-The pseudowords are computer-generated to maintain phonotactic probability in English. We then created 3x3 and 4x4 using Google Voice Generator. The pictures are based on NOUN Database (http://www.sussex.ac.uk/wordlab/noun)\[(Horst, J. S., & Hout, M. C. (2016))
+This design ensured that stimuli were consistent with the original study and controlled for prior familiarity and linguistic biases.
 
 ### Procedure
 
-The procedure will follow Yu & Smith (2007) with minimal modification: “Each trial began with the simultaneous visual presentation of the referents on a computer monitor. The names were then presented auditorily over the computer’s speakers.” As in the original study, no additional cues will be provided to suggest word-object pairings within individual trials, and participants will complete a 4-alternative forced-choice test following each condition.
+The procedure will closely follow Yu and Smith (2007) with minimal modifications to ensure replication fidelity.
+
+Each trial will consist of the following steps:
+
+1.  **Visual Presentation**: Referents will be displayed simultaneously on a computer monitor.
+
+2.  **Auditory Presentation**: Pseudoword names will be presented audibly through the computer's speakers.
+
+No additional cues will be provided during trials to indicate word-object pairings. This ensures that participants rely solely on cross-trial statistical learning to deduce correct pairings.
+
+At the end of each condition (2×2, 3×3, and 4×4), participants will complete a 4-alternative forced-choice test. During this test, participants will hear a pseudoword and select its corresponding referent from four images displayed on the screen. The test evaluates the accuracy of word-referent pair learning across conditions.
 
 ### Analysis Plan
 
@@ -109,6 +126,7 @@ library(tidyr)
 library(tidyverse)
 library(effsize)
 library(pwr)
+library(car)
 
 # Function to process files (improved)
 process_files <- function(file_list, condition_label) {
@@ -213,7 +231,7 @@ ggplot(mean_accuracy, aes(x = condition, y = mean_accuracy)) +
 
 ![](Yu%20&%20Smith%20(2007).jpg)
 
-Compared to the original study, the error bars for Conditions 1 and 2 are larger in our experiment, indicating greater variability in participant performance. In the original study, the error bars are smaller, reflecting more consistent accuracy among participants across all conditions.
+Accuracy decreases as within-trial ambiguity increases. This trend aligns with the findings of the original study, indicating that task complexity negatively impacts learning performance.
 
 ```{r}
 condition_accuracy <- data %>%
@@ -223,47 +241,44 @@ condition_accuracy <- data %>%
 condition_accuracy
 ```
 
--   In comparison to the original experiment, our accuracy data reflects similar but slightly lower performance across all conditions.
--   In the original study, participants discovered, on average, more than 16 of the 18 pairs in the 2x2 condition, corresponding to an accuracy above 88.9%, while our participants achieved an average accuracy of 68.1%.
--   For the 3x3 condition, the original study reported participants discovering more than 13 of the 18 pairs, or an accuracy above 72.2%, while our participants averaged 55.5%.
--   In the 4x4 condition, the original study indicated participants discovered nearly 10 pairs, or an accuracy of approximately 55.6%, while our participants averaged 39.0%.
--   Both our study and the original experiment demonstrate a pattern of declining performance as ambiguity increases across conditions.
+-   Our replication reflects the same pattern of declining accuracy with increasing ambiguity observed in the original study, but with systematically lower performance. In the 2×2 condition, accuracy was 67.9% in our study compared to over 88.9% in the original. For the 3×3 condition, our participants achieved 54.3%, compared to 72.2% in the original. In the 4×4 condition, accuracy dropped to 39.3% in our study versus 55.6% in the original. While participants in both studies consistently outperformed chance, overall accuracy was lower in our replication.
+-   These discrepancies likely stem from differences in participant populations (Prolific users vs. university students), the online testing environment, and minor procedural variations. Despite this, our findings reaffirm the robustness of cross-situational learning and the impact of task complexity on performance. Future replications should address these methodological differences to reduce variability and better align with the original study.
 
 2.  **Image-Specific Accuracy**
 
 ```{r}
-img_acc_c1 <- data_c1 %>%
-  group_by(correct_image) %>%
-  summarize(accuracy = mean(correct, na.rm = TRUE))
+# Combine data from all conditions
+combined_data <- bind_rows(
+  data_c1 %>% mutate(Condition = "Condition1"),
+  data_c2 %>% mutate(Condition = "Condition2"),
+  data_c3 %>% mutate(Condition = "Condition3")
+)
 
-ggplot(img_acc_c1, aes(x = correct_image, y = accuracy)) +
-  geom_line(color = "grey",linewidth = 1) + 
-  geom_point(size = 1) +
-  scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
-  labs(x = "Per Image", y = "Accuracy", title = "Condition1")
+# Calculate accuracy per image for each condition
+image_accuracy <- combined_data %>%
+  group_by(correct_image, Condition) %>%
+  summarize(accuracy = mean(correct, na.rm = TRUE), .groups = 'drop')
 
-img_acc_c2 <- data_c2 %>%
-  group_by(correct_image) %>%
-  summarize(accuracy = mean(correct, na.rm = TRUE))
+# Plot all conditions in one plot with distinct colors
+ggplot(image_accuracy, aes(x = correct_image, y = accuracy, color = Condition, group = Condition)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = seq(min(image_accuracy$correct_image), max(image_accuracy$correct_image), 1)) +
+  labs(
+    x = "Per Image",
+    y = "Accuracy",
+    title = "Accuracy by Image Across Conditions"
+  ) +
+  theme_minimal() +
+  scale_color_manual(values = c("Condition1" = "blue", "Condition2" = "navy", "Condition3" = "lightblue"))
 
-ggplot(img_acc_c2, aes(x = correct_image, y = accuracy)) +
-  geom_line(color = "grey",linewidth = 1) + 
-  geom_point(size = 1) +
-  scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
-  labs(x = "Per Image", y = "Accuracy", title = "Condition2")
-
-img_acc_c3 <- data_c3 %>%
-  group_by(correct_image) %>%
-  summarize(accuracy = mean(correct, na.rm = TRUE))
-
-ggplot(img_acc_c3, aes(x = correct_image, y = accuracy)) +
-  geom_line(color = "grey",linewidth = 1) + 
-  geom_point(size = 1) +
-  scale_x_continuous(breaks = seq(min(data$correct_image), max(data$correct_image), 1)) +
-  labs(x = "Per Image", y = "Accuracy", title = "Condition3")
 ```
 
-The plot presents accuracy by image for each condition, showing how participants performed across the 18 images in the 2x2, 3x3, and 4x4 conditions. In Condition 1, accuracy remains relatively stable across all images, with minimal variability. Condition 2 and Condition 3 show slightly greater variability but no extreme deviations.
+The combined plot highlights clear trends in accuracy across conditions, with performance declining as ambiguity increases.
+
+The overlap between Conditions 1 and 2 for certain images suggests that low-ambiguity strategies may partially carry over to moderate ambiguity. However, the lack of overlap with Condition 3 highlights the disruption caused by higher complexity. Variability across images, particularly in Conditions 2 and 3, likely reflects image-specific factors such as distinctiveness or interference from distractors.
+
+These results support the hypothesis that increased ambiguity negatively impacts learning, consistent with the original study. The variability within conditions underscores the importance of pair-specific factors, suggesting future research should investigate how such features influence learning under ambiguous conditions.
 
 3.  **Effect of condition** (ANOVA)
 
@@ -280,9 +295,9 @@ anova <- aov(perc ~ condition, data = participant_data)
 summary(anova)
 ```
 
--   Our ANOVA results (F = 10.8, p = 5.37e-05) revealed a statistically significant effect of condition on accuracy, indicating that participants’ performance varied significantly across the three conditions. This finding aligns with the original study, which also reported a decline in accuracy as task complexity increased from the 2x2 to 4x4 condition.
+-   The ANOVA revealed a significant effect of condition on accuracy (F = 10.8, p = 5.37e-05), indicating that performance declined as task complexity increased.
 
--   This provides sufficient evidence for that, similar to the original study, ambiguity plays an important role in participants’ ability to learn word-referent pairs.
+-   This finding aligns with the original study, supporting the hypothesis that higher ambiguity impairs participants' ability to learn word-referent pairs. The results highlight the critical role of ambiguity in influencing cross-situational learning outcomes.
 
 4.  **Post-hoc**
 
@@ -291,9 +306,9 @@ tukey <- TukeyHSD(anova)
 print(tukey)
 ```
 
--   The post-hoc analysis highlights statistically significant differences in accuracy across the conditions, particularly between Condition 3 and the other two conditions. This is consistent with the findings of the original study, where performance declined as ambiguity increased.
+-   The Tukey post-hoc analysis highlights significant declines in accuracy as ambiguity increases. The difference between Condition 3 (4×4) and the other two conditions is statistically significant, indicating that participants struggled substantially more in the highest ambiguity condition. However, the difference between Condition 2 (3×3) and Condition 1 (2×2) was not significant, suggesting only a modest increase in difficulty between low and moderate ambiguity.
 
--   In detail, the relatively weak significance between Condition 1 and Condition 2 suggests that participants found the 3x3 condition slightly more challenging than the 2x2 condition, but the effect is less pronounced compared to the drop in accuracy observed in the 4x4 condition.
+-   These results are consistent with the original study, which reported the most pronounced drop in accuracy between the 3×3 and 4×4 conditions, emphasizing the impact of ambiguity on learning performance.
 
 ### Exploratory analyses
 
@@ -332,52 +347,106 @@ ggplot(data_combined, aes(x = factor(correct, labels = c("Incorrect", "Correct")
   theme_minimal() +
   theme(strip.text = element_text(size = 12)) #Adjust the size of facet labels
 ```
-We use Bartlett's test for multiple groups. 
+
+The analysis indicates that response times increase with task complexity, as seen in the jump from Condition 1 to Condition 2 for both correct and incorrect responses. Correct responses were generally faster than incorrect ones in Conditions 1 and 2, suggesting greater confidence in resolving ambiguity. However, in Condition 3, correct responses were slower than incorrect ones, indicating higher cognitive effort for successful learning under high ambiguity. The variability in response times also grows with complexity, as seen in the larger spread in Conditions 2 and 3, reflecting increased uncertainty and guessing. This supports the conclusion that ambiguity influences not just accuracy but the cognitive load required for both correct and incorrect responses.
+
+Here, we perform Levene’s test.
+
 ```{r}
-bartlett.test(data$response_time~data$condition)
+# Perform Levene's Test for homogeneity of variances
+levene_test <- leveneTest(response_time ~ condition, data = data_combined)
+
+print(levene_test)
 ```
-The differences among each condition are not significant. We now visualize the results over images. 
+
+The Levene’s test results indicate that the variances of response times across conditions are significantly different (F = 9.704, p \< 0.001).
 
 **Response Time by Images**
 
 ```{r}
 response_time_by_image <- data %>%
   group_by(condition, correct_image) %>%
-  summarise(
+  summarize(
     Mean_ResponseTime = mean(response_time, na.rm = TRUE),
     .groups = 'drop'
   )
 
 ggplot(response_time_by_image, aes(x = correct_image, 
                                    y = Mean_ResponseTime, 
-                                   group = condition, 
-                                   color = condition)) +
-  geom_line(size = 1) +
-  geom_point(size = 2) +
+                                   color = condition, 
+                                   group = condition)) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) +
   labs(
-    title = "Response Times by Image for Each Condition",
+    title = "Response Times by Image Across Conditions",
     x = "Image",
-    y = "Mean Response Time (ms)"
+    y = "Mean Response Time (ms)",
+    color = "Condition"
   ) +
-  scale_x_continuous(breaks = unique(response_time_by_image$correct_image)) +
-  facet_wrap(~condition, scales = "free_x", ncol = 1) +
-  theme_minimal() 
+  scale_x_continuous(breaks = seq(min(response_time_by_image$correct_image), 
+                                  max(response_time_by_image$correct_image), 1)) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10),
+    plot.title = element_text(size = 14, face = "bold")
+  )
+
 ```
-In Condition 1, response times stabilize quickly after a drop from Image 1 to Image 2, showing minimal variability. Condition 2 shows a significant initial drop but remain stable afterwords. Condition 3 has relatively stable response times and a smaller initial drop. The initial drop across all conditions might suggest participants spend time adapting to the test phase at the beginning.
+
+The trends suggest that task familiarity and ambiguity interact to influence response times. In **Condition 1**, participants quickly adapted due to lower ambiguity, while in **Condition 2**, the initial ambiguity resulted in slower responses that improved over time. In **Condition 3**, response times reflect persistent difficulty, highlighting the impact of high ambiguity on learning and decision-making processes. These patterns reinforce the role of task complexity in shaping cognitive load and adaptive strategies during word-referent learning.
+
+**Correctness by Response Time Quartiles**
+
+To explore how response time relates to performance, we divide response times into quartiles and examine the proportion of correct responses within each quartile across conditions.
+
+```{r}
+data_combined <- data_combined %>%
+  group_by(condition) %>%
+  mutate(
+    response_time_quartile = ntile(response_time, 4) # Divide into 4 quartiles
+  )
+
+# Calculate proportion correct within each quartile and condition
+correctness_by_quartile <- data_combined %>%
+  group_by(condition, response_time_quartile) %>%
+  summarize(
+    proportion_correct = mean(correct, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Plot correctness by response time quartiles
+ggplot(correctness_by_quartile, aes(x = response_time_quartile, y = proportion_correct, color = condition, group = condition)) +
+  geom_line(size = 1) +
+  geom_point(size = 3) +
+  labs(
+    title = "Proportion Correct by Response Time Quartiles",
+    x = "Response Time Quartile (1 = Fastest, 4 = Slowest)",
+    y = "Proportion Correct",
+    color = "Condition"
+  ) +
+  theme_minimal() +
+  scale_x_continuous(breaks = 1:4)
+```
+
+This suggests that response time is a stronger predictor of accuracy in low-ambiguity conditions, where faster responses reflect confidence and effective learning. In high-ambiguity conditions, slower response times do not appear to improve accuracy, indicating that participants struggle regardless of deliberation.
 
 ## Discussion
 
-### Summary of Replication Attempt
+### **Summary of Replication Attempt**
 
-Our confirmatory analysis revealed that participants’ performance significantly declined as task ambiguity increased across the three conditions, consistent with the original study’s findings. Accuracy was highest in the 2x2 condition, lower in the 3x3 condition, and lowest in the 4x4 condition, with all conditions exceeding chance levels. While the general pattern replicated the original study, the levels of accuracy in our study was lower across all conditions, and variability was higher, particularly in the more complex conditions. These results suggest a partial replication of the original findings, capturing the overall trend but with differences in the strength and consistency of participant performance.
+Our replication successfully reproduced the general trends reported by Yu and Smith (2007), demonstrating that participant accuracy declined as within-trial ambiguity increased across the three conditions (2×2, 3×3, and 4×4). Participants achieved the highest accuracy in the 2×2 condition, moderate accuracy in the 3×3 condition, and the lowest accuracy in the 4×4 condition, consistent with the original findings. However, overall accuracy levels in our replication were slightly lower, suggesting differences due to sample population, testing environment, or procedural nuances.
 
-### Commentary
+Response time analyses revealed further insights into learning performance. Participants responded faster when correct under low and moderate ambiguity, while slower responses in the high-ambiguity condition did not necessarily improve accuracy. These findings align with the original study’s assertion that ambiguity significantly impacts learning outcomes, with increased complexity leading to greater cognitive load and reduced performance.
 
--   Our exploratory analyses showed that response times increased with task complexity, particularly in the 3x3 condition. Interestingly, a small number of participants in the 4x4 condition still achieved relatively high accuracy within a short response time, suggesting that they may use more effective strategies to resolve high ambiguity.
+#### **Commentary**
 
--   While the overall trend of declining accuracy with increasing task complexity replicated the original findings, the lower accuracy and higher variability in our study suggest the presence of moderating factors. Differences in participant demographics (university students vs. Prolific users), experimental settings, or task delivery (i.e. instructions, timing) could potentially influence the test results.
+The replication highlights the robustness of cross-situational learning mechanisms under low ambiguity while emphasizing their limitations as task complexity increases. The slightly lower accuracy and higher variability in our replication may reflect differences in the online testing environment compared to the controlled lab settings of the original study, as well as potential differences in participant characteristics between the Prolific sample and university students.
 
--   The main challenge in interpreting the results lies in the high variability observed in our study, which could be attributed to uncontrolled external factors. Another important aspect not tested in our replication is the role of foil probability—how often incorrect choices were presented. We ignored the factor due to limited time, which may have affected participants’ ability to differentiate correct from incorrect word pairings. Future studies may attempt to take better controll of external factors and take fol probability into account.
+Exploratory analyses provided additional insights, showing how response time patterns differ across conditions. Faster responses correlated with higher accuracy in low-ambiguity conditions, suggesting confidence and effective learning strategies. In contrast, the high-ambiguity condition showed limited gains from slower responses, implying that participants struggled to resolve the task regardless of deliberation time.
+
+Overall, the replication confirms the critical role of ambiguity in shaping word-referent learning and provides a foundation for future research to explore factors such as visual complexity, distractor interference, and individual differences in learning strategies. Addressing these factors in subsequent studies could enhance the generalizability of findings to real-world learning contexts.
 
 ## **Author Contribution Statement**
 
